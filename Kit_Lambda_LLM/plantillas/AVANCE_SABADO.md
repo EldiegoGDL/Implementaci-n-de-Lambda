@@ -6,13 +6,13 @@
 
 | Dato | Información |
 |---|---|
-| Nombre | [Nombre completo] |
+| Nombre |  Diego Ignacio Garcia Diaz de Leon|
 | Grupo/equipo | [Datos] |
-| Repositorio/ruta de trabajo | [URL o ruta] |
-| Rama y commit inicial | [Datos] |
-| Sistema operativo y versión | [Dato] |
-| Agente y forma de acceso | [Dato y capacidad comprobada] |
-| Cambios locales previos a conservar | [Archivos/propósito o `NINGUNO`, si se verificó] |
+| Repositorio/ruta de trabajo | https://github.com/EldiegoGDL/Implementaci-n-de-Lambda |
+| Rama y commit inicial | Agente "incorporacion del agente" |
+| Sistema operativo y versión | windows 10 version 22H2 |
+| Agente y forma de acceso |GitHub Copilot local
+| Cambios locales previos a conservar | kit_Lambda_LLM para orientacion y seguimiento de la implementacion |
 
 ## 2. Arquitectura actual antes del cambio
 
