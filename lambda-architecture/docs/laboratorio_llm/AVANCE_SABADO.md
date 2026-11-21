@@ -6,7 +6,7 @@
 
 | Dato | Información |
 |---|---|
-| Nombre | Diego Ignacio Garcia Diaz de Leon,Areli Yesell Fuentes Rosas, Cesar Omar sanchez Rodriguez |
+| Nombre | Diego Ignacio Garcia Diaz de Leon |
 | Grupo/equipo | Zero Downtime |
 | Repositorio/ruta de trabajo | https://github.com/EldiegoGDL/Implementaci-n-de-Lambda |
 | Rama y commit inicial | HECHO: rama `agente`; commit `08bb8100315bd99315f0f66ce3b24c83d67a2de5`; sujeto `incorporacion del agente reintento 2`; seguimiento de `origin/agente`. |
