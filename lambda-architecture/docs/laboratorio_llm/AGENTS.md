@@ -1,0 +1,9 @@
+- Realiza la tarea solicitada y conserva los cambios previos del equipo.
+- Usa el intérprete, terminal y entorno confirmados para el proyecto.
+- Explica el propósito del cambio, revisa el diff y ejecuta una comprobación pertinente.
+- Distingue resultado esperado, resultado observado e hipótesis.
+- Si una prueba no se ejecutó, decláralo. No inventes mediciones ni compatibilidad.
+- Resuelve problemas de ejecución con cambios acotados; evita reinstalaciones o actualizaciones masivas sin evidencia.
+- Antes de modificar código, presenta el plan, el alcance, los archivos afectados y el efecto previsto en las vistas estática, física y dinámica. Espera confirmación del equipo.
+- Conserva responsabilidades, interfaces, contratos y flujos existentes salvo que la mejora acordada autorice explícitamente el cambio. No afirmes que una arquitectura se preservó sin comprobarlo.
+- No publiques secretos ni hagas push, borrados de datos o cambios globales sin que se solicite esa acción.
