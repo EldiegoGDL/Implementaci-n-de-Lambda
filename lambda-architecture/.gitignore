@@ -1,0 +1,46 @@
+# ==========================================
+# IGNORAR VARIABLES DE ENTORNO SECRETO
+# ==========================================
+.env
+
+# ==========================================
+# IGNORAR ENTORNOS VIRTUALES
+# ==========================================
+venv/
+env/
+.venv/
+
+# ==========================================
+# IGNORAR ARCHIVOS TEMPORALES DE PYTHON
+# ==========================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ==========================================
+# IGNORAR BASES DE DATOS LOCALES Y LOGS
+# ==========================================
+batch/mlflow.db
+*.db
+*.sqlite3
+*.sqlite
+*.log
+
+# ==========================================
+# IGNORAR DATOS DE DESARROLLO Y CONTENEDORES
+# ==========================================
+data/postgres/
+data/datalake/
+batch/mlruns/
+data/raw/*.dat
+data/raw/*.atr
+data/raw/*.xws
+
+# ==========================================
+# IDEs Y ARCHIVOS DE SISTEMA
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

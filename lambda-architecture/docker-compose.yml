@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # ----------------------------
+  # 1. BROKER DE MENSAJES (Kafka)
+  # ----------------------------
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  # ----------------------------
+  # 2. ALMACENAMIENTO (PostgreSQL)
+  # ----------------------------
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: medical_iot
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  # ----------------------------
+  # 3. VISUALIZACIÓN (Grafana)
+  # ----------------------------
+  grafana:
+    image: grafana/grafana:10.0.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+  # ----------------------------
+  # 4. GESTIÓN DE MODELOS (MLflow)
+  # ----------------------------
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    ports:
+      - "5001:5000"
+    command: mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlruns --host 0.0.0.0
+    volumes:
+      - ./batch/mlruns:/mlruns
+      - ./batch/mlflow.db:/mlflow.db
+
+  # ----------------------------
+  # 5. CONFIGURACIÓN INICIAL (Crea los topics automáticamente)
+  # ----------------------------
+  init-kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    depends_on:
+      - kafka
+    command: >
+      bash -c "echo 'Esperando a Kafka...'; sleep 10;  kafka-topics --create --topic vital_signs --bootstrap-server kafka:29092 --partitions 1 --replication-factor 1 --if-not-exists; kafka-topics --create --topic ecg_raw --bootstrap-server kafka:29092 --partitions 1 --replication-factor 1 --if-not-exists; echo 'Topics creados exitosamente!'"
